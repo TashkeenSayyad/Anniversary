@@ -1,0 +1,495 @@
+/* ============================================================
+   COMPONENTS · buttons, cards, frames, ornaments, motion
+   ============================================================ */
+
+/* --- Buttons ----------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.95rem 1.75rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 320ms var(--ease),
+              background 320ms var(--ease),
+              color 320ms var(--ease),
+              border-color 320ms var(--ease),
+              box-shadow 320ms var(--ease);
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.btn--primary {
+  background: var(--ink);
+  color: var(--ivory);
+  box-shadow: 0 14px 30px -14px rgba(42, 31, 38, 0.45);
+}
+
+.btn--primary:hover {
+  background: var(--rose-deep);
+  transform: translateY(-2px);
+  box-shadow: 0 18px 38px -16px rgba(110, 45, 62, 0.55);
+}
+
+.btn--ghost {
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--line);
+}
+
+.btn--ghost:hover {
+  border-color: var(--rose);
+  color: var(--rose);
+  transform: translateY(-2px);
+}
+
+/* --- Scroll hint ------------------------------------------- */
+.scroll-hint {
+  margin-top: 2.5rem;
+  width: 22px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  position: relative;
+  opacity: 0.55;
+  transition: opacity 300ms ease;
+}
+
+.scroll-hint:hover {
+  opacity: 1;
+}
+
+.scroll-hint span {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  width: 3px;
+  height: 8px;
+  background: var(--rose);
+  border-radius: 2px;
+  transform: translateX(-50%);
+  animation: scroll-bounce 1.6s ease infinite;
+}
+
+@keyframes scroll-bounce {
+  0%   { transform: translate(-50%, 0);    opacity: 1; }
+  60%  { transform: translate(-50%, 14px); opacity: 0; }
+  61%  { transform: translate(-50%, 0);    opacity: 0; }
+  100% { transform: translate(-50%, 0);    opacity: 1; }
+}
+
+/* --- Ornamental rules -------------------------------------- */
+.rule {
+  display: flex;
+  justify-content: center;
+  color: var(--gold);
+}
+
+.rule--ornament {
+  width: clamp(140px, 32vw, 220px);
+  margin-block: 0.5rem;
+  opacity: 0.85;
+}
+
+.rule--ornament svg {
+  width: 100%;
+  height: auto;
+}
+
+.ornament {
+  color: var(--gold);
+  display: flex;
+  justify-content: center;
+  margin-block: 1.75rem;
+  opacity: 0.9;
+}
+
+.ornament--small svg {
+  width: 52px;
+  height: 52px;
+  animation: slow-spin 40s linear infinite;
+}
+
+@keyframes slow-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* --- Letter ------------------------------------------------ */
+.section--letter {
+  text-align: center;
+}
+
+.letter {
+  max-width: 58ch;
+  margin: 1rem auto 0;
+  text-align: left;
+  padding: 0.5rem 0;
+}
+
+.letter p {
+  font-size: 1.2rem;
+  line-height: 1.95;
+  color: var(--ink-soft);
+  margin-bottom: 1.75rem;
+}
+
+.letter p:last-child {
+  margin-bottom: 0;
+}
+
+.letter-lead {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.45rem !important;
+  color: var(--ink) !important;
+  line-height: 1.5 !important;
+  text-align: center;
+}
+
+.dropcap {
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 400;
+  font-size: 3.2em;
+  line-height: 0.9;
+  float: left;
+  padding: 0.12em 0.12em 0 0;
+  color: var(--rose);
+  font-feature-settings: "lnum";
+}
+
+.letter-lead .dropcap {
+  float: none;
+  display: inline-block;
+  font-size: 1.4em;
+  padding: 0;
+  vertical-align: baseline;
+  color: var(--rose);
+  font-style: normal;
+}
+
+/* --- Stat cards -------------------------------------------- */
+.stat {
+  text-align: center;
+  padding: 2.75rem 1.5rem;
+  background: var(--paper-warm);
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  position: relative;
+  transition: transform 600ms var(--ease), box-shadow 600ms var(--ease);
+}
+
+.stat::before,
+.stat::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--gold);
+  opacity: 0.4;
+}
+
+.stat::before {
+  top: 8px;
+  left: 8px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.stat::after {
+  bottom: 8px;
+  right: 8px;
+  border-left: none;
+  border-top: none;
+}
+
+.stat:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-paper);
+}
+
+.stat-num {
+  font-family: "Fraunces", Georgia, serif;
+  font-size: 4rem;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  font-feature-settings: "lnum";
+  letter-spacing: -0.02em;
+}
+
+.stat-num--glyph {
+  font-size: 4.5rem;
+  color: var(--rose);
+}
+
+.stat-label {
+  font-size: 0.95rem;
+  color: var(--ink);
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin-bottom: 0.8rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 400;
+}
+
+.stat-caption {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+/* --- Timeline moments -------------------------------------- */
+.moment-marker {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 0.2rem;
+}
+
+.moment-num {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--rose);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  position: relative;
+}
+
+.moment-num::after {
+  content: "";
+  display: block;
+  width: 40px;
+  height: 1px;
+  background: var(--line-gold);
+  margin-top: 0.75rem;
+}
+
+.moment-title {
+  font-size: 1.55rem;
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 0.85rem;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+
+.moment-body p {
+  font-size: 1.08rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  max-width: 55ch;
+}
+
+/* --- Photo frames ------------------------------------------ */
+.frame {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.frame-inner {
+  background: var(--paper-warm);
+  border: 1px solid var(--line);
+  padding: 14px;
+  box-shadow: var(--shadow-paper);
+  position: relative;
+  overflow: hidden;
+  transition: transform 500ms var(--ease), box-shadow 500ms var(--ease);
+  height: 100%;
+}
+
+.frame-inner::before {
+  content: "";
+  position: absolute;
+  inset: 14px;
+  border: 1px solid var(--line-gold);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.frame:hover .frame-inner {
+  transform: translateY(-4px) rotate(-0.3deg);
+  box-shadow: 0 25px 50px -20px rgba(42, 31, 38, 0.28);
+}
+
+.frame-placeholder {
+  height: 100%;
+  min-height: 280px;
+  background: linear-gradient(135deg, rgba(237, 227, 210, 0.6) 0%, rgba(249, 240, 224, 0.4) 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  color: var(--muted);
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+}
+
+.frame-placeholder svg {
+  width: 36px;
+  height: 36px;
+  opacity: 0.5;
+}
+
+.frame-inner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.frame figcaption {
+  text-align: center;
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  color: var(--rose);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+}
+
+/* --- Dua block -------------------------------------------- */
+.section--dua {
+  text-align: center;
+  background: linear-gradient(180deg,
+    transparent 0%,
+    rgba(139, 58, 78, 0.04) 40%,
+    rgba(139, 58, 78, 0.04) 60%,
+    transparent 100%);
+}
+
+.dua-ornament {
+  color: var(--gold);
+  width: 120px;
+  margin: 0 auto 2rem;
+  opacity: 0.9;
+}
+
+.dua {
+  margin: 1.5rem auto 0;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid var(--line-gold);
+  border-bottom: 1px solid var(--line-gold);
+  position: relative;
+}
+
+.dua::before,
+.dua::after {
+  content: "";
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--gold);
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.55;
+}
+
+.dua::before { top: -4.5px; }
+.dua::after  { bottom: -4.5px; }
+
+.dua p {
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: clamp(1.2rem, 2vw, 1.55rem);
+  line-height: 1.75;
+  color: var(--ink);
+  max-width: 36ch;
+  margin: 0 auto;
+}
+
+.dua-ameen {
+  margin-top: 2rem;
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--rose);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+/* --- Signature --------------------------------------------- */
+.signature {
+  margin-top: 2rem;
+  text-align: center;
+  font-family: "Fraunces", Georgia, serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 1.5rem;
+  color: var(--rose);
+  letter-spacing: 0.02em;
+}
+
+/* --- Ambient gold dust ------------------------------------- */
+.dust {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.dust-mote {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(201, 168, 118, 0.9) 0%, rgba(201, 168, 118, 0) 70%);
+  opacity: 0;
+  animation-name: drift;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.dust-mote--sm { width: 2px; height: 2px; }
+.dust-mote--lg { width: 4px; height: 4px; }
+
+@keyframes drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0;
+  }
+  10% { opacity: 0.5; }
+  90% { opacity: 0.4; }
+  100% {
+    transform: translate3d(var(--dx, 40px), -110vh, 0);
+    opacity: 0;
+  }
+}
+
+/* --- Reveal-on-scroll animation --------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 1100ms var(--ease),
+              transform 1100ms var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveal for hero elements on load */
+.hero .reveal { transition-delay: 0ms; }
+.hero .reveal:nth-child(1)  { transition-delay: 100ms; }
+.hero .reveal:nth-child(2)  { transition-delay: 250ms; }
+.hero .reveal:nth-child(3)  { transition-delay: 500ms; }
+.hero .reveal:nth-child(4)  { transition-delay: 700ms; }
+.hero .reveal:nth-child(5)  { transition-delay: 900ms; }
+.hero .reveal:nth-child(6)  { transition-delay: 1100ms; }
